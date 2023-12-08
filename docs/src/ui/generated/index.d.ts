@@ -40,6 +40,8 @@ declare const lightTheme: {
             xs: string;
             sm: string;
             md: string;
+            xl: string;
+            pill: string;
             rounded: string;
         };
         color: {
@@ -284,8 +286,10 @@ declare const lightTheme: {
 type ThemeType = typeof lightTheme;
 declare const darkTheme: ThemeType;
 
-type CheckmarkProps = React__default.ComponentPropsWithoutRef<'div'>;
-declare const Checkmark: (_props: CheckmarkProps) => react_jsx_runtime.JSX.Element;
+type CheckmarkProps = React__default.ComponentPropsWithoutRef<'div'> & {
+    className?: string;
+};
+declare const Checkmark: ({ className }: CheckmarkProps) => react_jsx_runtime.JSX.Element;
 
 type AnimatedCheckmarkProps = React.ComponentProps<typeof motion.path> & {
     isAnimating?: boolean;
@@ -341,17 +345,21 @@ type EntityChipProps = {
     avatarType?: AvatarType;
     variant?: EntityChipVariant;
     LeftIcon?: IconComponent;
+    className?: string;
 };
 declare enum EntityChipVariant {
     Regular = "regular",
     Transparent = "transparent"
 }
-declare const EntityChip: ({ linkToEntity, entityId, name, avatarUrl, avatarType, variant, LeftIcon, }: EntityChipProps) => react_jsx_runtime.JSX.Element;
+declare const EntityChip: ({ linkToEntity, entityId, name, avatarUrl, avatarType, variant, LeftIcon, className, }: EntityChipProps) => react_jsx_runtime.JSX.Element;
 
 type IconAddressBookProps = TablerIconsProps;
 declare const IconAddressBook: (props: IconAddressBookProps) => JSX.Element;
 
-declare const SoonPill: () => react_jsx_runtime.JSX.Element;
+type SoonPillProps = {
+    className?: string;
+};
+declare const SoonPill: ({ className }: SoonPillProps) => react_jsx_runtime.JSX.Element;
 
 declare const mainColors: {
     green: string;
@@ -367,9 +375,6 @@ declare const mainColors: {
 };
 type ThemeColor = keyof typeof mainColors;
 
-declare const tagColors: string[];
-type TagColor = (typeof tagColors)[number];
-declare const castToTagColor: (color: string) => TagColor;
 type TagProps = {
     className?: string;
     color: ThemeColor;
@@ -397,8 +402,9 @@ type AppTooltipProps = {
 };
 declare const AppTooltip: ({ anchorSelect, className, content, delayHide, isOpen, noArrow, offset, place, positionStrategy, }: AppTooltipProps) => react_jsx_runtime.JSX.Element;
 
-declare const OverflowingTextWithTooltip: ({ text, }: {
+declare const OverflowingTextWithTooltip: ({ text, className, }: {
     text: string | null | undefined;
+    className?: string | undefined;
 }) => react_jsx_runtime.JSX.Element;
 
 type ProgressBarProps = {
@@ -408,6 +414,11 @@ type ProgressBarProps = {
     barHeight?: number;
     barColor?: string;
     autoStart?: boolean;
+    className?: string;
+};
+type StyledBarProps = {
+    barHeight?: number;
+    className?: string;
 };
 type ProgressBarControls = AnimationControls & {
     start: () => Promise<any>;
@@ -465,8 +476,9 @@ declare const FloatingButton: ({ className, Icon, title, size, applyBlur, applyS
 
 type FloatingButtonGroupProps = Pick<FloatingButtonProps, 'size'> & {
     children: React__default.ReactElement[];
+    className?: string;
 };
-declare const FloatingButtonGroup: ({ children, size, }: FloatingButtonGroupProps) => react_jsx_runtime.JSX.Element;
+declare const FloatingButtonGroup: ({ children, size, className, }: FloatingButtonGroupProps) => react_jsx_runtime.JSX.Element;
 
 type FloatingIconButtonSize = 'small' | 'medium';
 type FloatingIconButtonPosition = 'standalone' | 'left' | 'middle' | 'right';
@@ -532,18 +544,19 @@ type Props = {
 type MainButtonProps = Props & {
     Icon?: IconComponent;
 };
-declare const MainButton: ({ Icon, title, fullWidth, variant, type, onClick, disabled, }: MainButtonProps) => react_jsx_runtime.JSX.Element;
+declare const MainButton: ({ Icon, title, fullWidth, variant, type, onClick, disabled, className, }: MainButtonProps) => react_jsx_runtime.JSX.Element;
 
 type RoundedIconButtonProps = {
     Icon: IconComponent;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
-declare const RoundedIconButton: ({ Icon, onClick, disabled, }: RoundedIconButtonProps) => react_jsx_runtime.JSX.Element;
+declare const RoundedIconButton: ({ Icon, onClick, disabled, className, }: RoundedIconButtonProps) => react_jsx_runtime.JSX.Element;
 
 type ColorScheme = 'Dark' | 'Light' | 'System';
 
 type ColorSchemeSegmentProps = {
     variant: ColorScheme;
     controls: AnimationControls;
+    className?: string;
 } & React__default.ComponentPropsWithoutRef<'div'>;
 type ColorSchemeCardProps = {
     variant: ColorScheme;
@@ -553,9 +566,10 @@ declare const ColorSchemeCard: ({ variant, selected, onClick, }: ColorSchemeCard
 
 type ColorSchemePickerProps = {
     value: ColorScheme;
+    className?: string;
     onChange: (value: ColorScheme) => void;
 };
-declare const ColorSchemePicker: ({ value, onChange, }: ColorSchemePickerProps) => react_jsx_runtime.JSX.Element;
+declare const ColorSchemePicker: ({ value, onChange, className, }: ColorSchemePickerProps) => react_jsx_runtime.JSX.Element;
 
 declare enum AutosizeTextInputVariant {
     Default = "default",
@@ -570,8 +584,9 @@ type AutosizeTextInputProps = {
     variant?: AutosizeTextInputVariant;
     buttonTitle?: string;
     value?: string;
+    className?: string;
 };
-declare const AutosizeTextInput: ({ placeholder, onValidate, minRows, onFocus, variant, buttonTitle, value, }: AutosizeTextInputProps) => react_jsx_runtime.JSX.Element;
+declare const AutosizeTextInput: ({ placeholder, onValidate, minRows, onFocus, variant, buttonTitle, value, className, }: AutosizeTextInputProps) => react_jsx_runtime.JSX.Element;
 
 declare enum CheckboxVariant {
     Primary = "primary",
@@ -594,8 +609,9 @@ type CheckboxProps = {
     variant?: CheckboxVariant;
     size?: CheckboxSize;
     shape?: CheckboxShape;
+    className?: string;
 };
-declare const Checkbox: ({ checked, onChange, onCheckedChange, indeterminate, variant, size, shape, }: CheckboxProps) => react_jsx_runtime.JSX.Element;
+declare const Checkbox: ({ checked, onChange, onCheckedChange, indeterminate, variant, size, shape, className, }: CheckboxProps) => react_jsx_runtime.JSX.Element;
 
 type EntityTitleDoubleTextInputProps = {
     firstValue: string;
@@ -603,8 +619,9 @@ type EntityTitleDoubleTextInputProps = {
     firstValuePlaceholder: string;
     secondValuePlaceholder: string;
     onChange: (firstValue: string, secondValue: string) => void;
+    className?: string;
 };
-declare const EntityTitleDoubleTextInput: ({ firstValue, secondValue, firstValuePlaceholder, secondValuePlaceholder, onChange, }: EntityTitleDoubleTextInputProps) => react_jsx_runtime.JSX.Element;
+declare const EntityTitleDoubleTextInput: ({ firstValue, secondValue, firstValuePlaceholder, secondValuePlaceholder, onChange, className, }: EntityTitleDoubleTextInputProps) => react_jsx_runtime.JSX.Element;
 
 type IconButtonVariant = 'primary' | 'secondary' | 'tertiary';
 
@@ -620,8 +637,9 @@ type IconPickerProps = {
     onClose?: () => void;
     onOpen?: () => void;
     variant?: IconButtonVariant;
+    className?: string;
 };
-declare const IconPicker: ({ disabled, dropdownScopeId, onChange, selectedIconKey, onClickOutside, onClose, onOpen, variant, }: IconPickerProps) => react_jsx_runtime.JSX.Element;
+declare const IconPicker: ({ disabled, dropdownScopeId, onChange, selectedIconKey, onClickOutside, onClose, onOpen, variant, className, }: IconPickerProps) => react_jsx_runtime.JSX.Element;
 
 type ImageInputProps = Omit<React__default.ComponentProps<'div'>, 'children'> & {
     picture: string | null | undefined;
@@ -631,8 +649,9 @@ type ImageInputProps = Omit<React__default.ComponentProps<'div'>, 'children'> & 
     isUploading?: boolean;
     errorMessage?: string | null;
     disabled?: boolean;
+    className?: string;
 };
-declare const ImageInput: ({ picture, onUpload, onRemove, onAbort, isUploading, errorMessage, disabled, }: ImageInputProps) => react_jsx_runtime.JSX.Element;
+declare const ImageInput: ({ picture, onUpload, onRemove, onAbort, isUploading, errorMessage, disabled, className, }: ImageInputProps) => react_jsx_runtime.JSX.Element;
 
 declare enum RadioSize {
     Large = "large",
@@ -654,7 +673,7 @@ type RadioProps = {
     labelPosition?: LabelPosition;
 };
 declare const Radio: {
-    ({ checked, value, onChange, onCheckedChange, size, labelPosition, disabled, }: RadioProps): react_jsx_runtime.JSX.Element;
+    ({ checked, value, onChange, onCheckedChange, size, labelPosition, disabled, className, }: RadioProps): react_jsx_runtime.JSX.Element;
     Group: ({ value, onChange, onValueChange, children, }: {
         children?: React$1.ReactNode;
     } & {
@@ -671,9 +690,45 @@ type RadioGroupProps = React__default.PropsWithChildren & {
 };
 declare const RadioGroup: ({ value, onChange, onValueChange, children, }: RadioGroupProps) => react_jsx_runtime.JSX.Element;
 
+type ContactLinkProps = {
+    className?: string;
+    href: string;
+    children?: React$1.ReactNode;
+    onClick?: (event: React$1.MouseEvent<HTMLElement>) => void;
+};
+declare const ContactLink: ({ className, href, children, onClick, }: ContactLinkProps) => react_jsx_runtime.JSX.Element;
+
+type RawLinkProps = {
+    className?: string;
+    href: string;
+    children?: React$1.ReactNode;
+    onClick?: (event: React$1.MouseEvent<HTMLElement>) => void;
+};
+declare const RawLink: ({ className, href, children, onClick, }: RawLinkProps) => react_jsx_runtime.JSX.Element;
+
+type RoundedLinkProps = {
+    href: string;
+    children?: React$1.ReactNode;
+    onClick?: (event: React$1.MouseEvent<HTMLElement>) => void;
+};
+declare const RoundedLink: ({ children, href, onClick }: RoundedLinkProps) => react_jsx_runtime.JSX.Element;
+
+declare enum LinkType {
+    Url = "url",
+    LinkedIn = "linkedin",
+    Twitter = "twitter"
+}
+type SocialLinkProps = {
+    href: string;
+    children?: React$1.ReactNode;
+    type?: LinkType;
+    onClick?: (event: React$1.MouseEvent<HTMLElement>) => void;
+};
+declare const SocialLink: ({ children, href, onClick, type, }: SocialLinkProps) => react_jsx_runtime.JSX.Element;
+
 declare module '@emotion/react' {
     interface Theme extends ThemeType {
     }
 }
 
-export { AnimatedCheckmark, AnimatedCheckmarkProps, AppTooltip, AppTooltipProps, AutosizeTextInput, AutosizeTextInputVariant, Button, ButtonAccent, ButtonGroup, ButtonGroupProps, ButtonPosition, ButtonProps, ButtonSize, ButtonVariant, Checkbox, CheckboxShape, CheckboxSize, CheckboxVariant, Checkmark, CheckmarkProps, Chip, ChipAccent, ChipSize, ChipVariant, CircularProgressBar, ColorSchemeCard, ColorSchemeCardProps, ColorSchemePicker, ColorSchemePickerProps, ColorSchemeSegmentProps, EntityChip, EntityChipProps, EntityChipVariant, EntityTitleDoubleTextInput, EntityTitleDoubleTextInputProps, FloatingButton, FloatingButtonGroup, FloatingButtonGroupProps, FloatingButtonPosition, FloatingButtonProps, FloatingButtonSize, FloatingIconButton, FloatingIconButtonGroup, FloatingIconButtonGroupProps, FloatingIconButtonPosition, FloatingIconButtonProps, FloatingIconButtonSize, IconAddressBook, IconPicker, ImageInput, LabelPosition, LightButton, LightButtonAccent, LightButtonProps, LightIconButton, LightIconButtonAccent, LightIconButtonProps, LightIconButtonSize, MainButton, OverflowingTextWithTooltip, ProgressBar, ProgressBarControls, ProgressBarProps, Radio, RadioGroup, RadioProps, RadioSize, RoundedIconButton, SoonPill, Tag, TagColor, TagProps, TooltipPosition, castToTagColor, darkTheme, lightTheme };
+export { AnimatedCheckmark, AnimatedCheckmarkProps, AppTooltip, AppTooltipProps, AutosizeTextInput, AutosizeTextInputVariant, Button, ButtonAccent, ButtonGroup, ButtonGroupProps, ButtonPosition, ButtonProps, ButtonSize, ButtonVariant, Checkbox, CheckboxShape, CheckboxSize, CheckboxVariant, Checkmark, CheckmarkProps, Chip, ChipAccent, ChipSize, ChipVariant, CircularProgressBar, ColorSchemeCard, ColorSchemeCardProps, ColorSchemePicker, ColorSchemePickerProps, ColorSchemeSegmentProps, ContactLink, EntityChip, EntityChipProps, EntityChipVariant, EntityTitleDoubleTextInput, EntityTitleDoubleTextInputProps, FloatingButton, FloatingButtonGroup, FloatingButtonGroupProps, FloatingButtonPosition, FloatingButtonProps, FloatingButtonSize, FloatingIconButton, FloatingIconButtonGroup, FloatingIconButtonGroupProps, FloatingIconButtonPosition, FloatingIconButtonProps, FloatingIconButtonSize, IconAddressBook, IconPicker, ImageInput, LabelPosition, LightButton, LightButtonAccent, LightButtonProps, LightIconButton, LightIconButtonAccent, LightIconButtonProps, LightIconButtonSize, LinkType, MainButton, OverflowingTextWithTooltip, ProgressBar, ProgressBarControls, ProgressBarProps, Radio, RadioGroup, RadioProps, RadioSize, RawLink, RoundedIconButton, RoundedLink, SocialLink, SoonPill, StyledBarProps, Tag, TooltipPosition, darkTheme, lightTheme };
