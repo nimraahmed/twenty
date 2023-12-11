@@ -59,4 +59,7 @@ export {
   TbUpload,
   TbVariable,
   TbSchema,
+  TbLink,
+  TbNavigation,
+  TbMenu,
 } from "react-icons/tb";
